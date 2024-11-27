@@ -31,7 +31,7 @@ exports.listSchools = (req, res) => {
         const { latitude, longitude } = req.query;
     
         if (!latitude || !longitude) {
-            return res.status(400).json({ error: 'Latitude and longitude are required' });
+            return res.status(400).json({ error: 'latitude and longitude are required' });
         }
     
         const userLocation = { latitude: parseFloat(latitude), longitude: parseFloat(longitude) };
