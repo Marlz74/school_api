@@ -27,7 +27,7 @@ exports.addSchool=(req,res)=>{
 
 exports.listSchools = (req, res) => {
     try {
-        console.log(req.query)
+        
         const { latitude, longitude } = req.query;
     
         if (!latitude || !longitude) {
