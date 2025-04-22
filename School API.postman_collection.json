@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "22740a8a-ff22-4076-980f-0ce6fc8c0871",
+		"name": "School API",
+		"description": "\n\n````markdown\n# School API\n\nThis API allows you to manage school data including adding schools and listing schools with the option to calculate the distance between the user and schools using latitude and longitude. The distance is calculated using the Haversine formula and is returned in meters.\n\n## Endpoints\n\n### Add School\n\n#### `POST /addSchool`\n\nThis endpoint allows you to add a new school to the database.\n\n#### Request Body\n- `name` (string): The name of the school (required)\n- `address` (string): The address of the school (required)\n- `latitude` (float): The latitude of the school (required)\n- `longitude` (float): The longitude of the school (required)\n\n#### Response\n- **201 Created**\n  ```json\n  {\n    \"status\": true,\n    \"message\": \"School added successfully\"\n  }\n````\n\n- **400 Bad Request** (Missing fields)\n  ```json\n  {\n    \"status\": false,\n    \"error\": \"All fields are required\",\n    \"fields\": [\"name\", \"address\", \"latitude\", \"longitude\"]\n  }\n  ```\n- **500 Internal Server Error** (Unexpected error)\n  ```json\n  {\n    \"status\": false,\n    \"error\": \"Sorry, An unexpected error occured\"\n  }\n  ```\n\n### 2. List Schools\n\n#### `GET /`listSchools\n\nThis endpoint allows you to list all schools and calculate the distance from the user's location.\n\n#### Query Parameters\n\n- `latitude` (float): The latitude of the user's location (required)\n- `longitude` (float): The longitude of the user's location (required)\n\n#### Response\n\n- **200 OK**\n  ```json\n  {\n    \"status\": true,\n    \"unit\": \"meters\",\n    \"schools\": [\n      {\n        \"id\": 1,\n        \"name\": \"School A\",\n        \"address\": \"123 School St.\",\n        \"latitude\": 12.345678,\n        \"longitude\": 65.4321,\n        \"distance\": \"100.5\"\n      },\n      {\n        \"id\": 2,\n        \"name\": \"School B\",\n        \"address\": \"456 School Ave.\",\n        \"latitude\": 12.345679,\n        \"longitude\": 65.4322,\n        \"distance\": \"200.8\"\n      }\n    ]\n  }\n  ```\n- **400 Bad Request** (Missing query parameters)\n  ```json\n  {\n    \"error\": \"latitude and longitude are required\"\n  }\n  ```\n- **500 Internal Server Error** (Unexpected error)\n  ```json\n  {\n    \"status\": false,\n    \"error\": \"Sorry, An unexpected error occured\"\n  }\n  ```\n\n##\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28547530",
+		"_collection_link": "https://www.postman.com/galactic-shadow-859260/educase/collection/z9su9sn/school-api?action=share&source=collection_link&creator=28547530"
+	},
+	"item": [
+		{
+			"name": "Add School",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Greenfield Academy\",\n  \"address\": \"123 Main Street\",\n  \"latitude\": 5.6037,\n  \"longitude\": -0.1870\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/addSchool",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"addSchool"
+					]
+				},
+				"description": "### Add School\n\n#### `POST /addSchool`\n\nThis endpoint allows you to add a new school to the database.\n\n#### Request Body\n- `name` (string): The name of the school (required)\n- `address` (string): The address of the school (required)\n- `latitude` (float): The latitude of the school (required)\n- `longitude` (float): The longitude of the school (required)\n\n#### Response\n- **201 Created**\n  ```json\n  {\n    \"status\": true,\n    \"message\": \"School added successfully\"\n  }\n````\n\n- **400 Bad Request** (Missing fields)\n  ```json\n  {\n    \"status\": false,\n    \"error\": \"All fields are required\",\n    \"fields\": [\"name\", \"address\", \"latitude\", \"longitude\"]\n  }\n  ```\n- **500 Internal Server Error** (Unexpected error)\n  ```json\n  {\n    \"status\": false,\n    \"error\": \"Sorry, An unexpected error occured\"\n  }\n  ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Get School",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/listSchools?latitude=1&longitude=2",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"listSchools"
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "1"
+						},
+						{
+							"key": "longitude",
+							"value": "2"
+						}
+					]
+				},
+				"description": "### List Schools\n\n#### `GET /`listSchools\n\nThis endpoint allows you to list all schools and calculate the distance from the user's location.\n\n#### Query Parameters\n\n- `latitude` (float): The latitude of the user's location (required)\n- `longitude` (float): The longitude of the user's location (required)\n\n#### Response\n\n- **200 OK**\n  ```json\n  {\n    \"status\": true,\n    \"unit\": \"meters\",\n    \"schools\": [\n      {\n        \"id\": 1,\n        \"name\": \"School A\",\n        \"address\": \"123 School St.\",\n        \"latitude\": 12.345678,\n        \"longitude\": 65.4321,\n        \"distance\": \"100.5\"\n      },\n      {\n        \"id\": 2,\n        \"name\": \"School B\",\n        \"address\": \"456 School Ave.\",\n        \"latitude\": 12.345679,\n        \"longitude\": 65.4322,\n        \"distance\": \"200.8\"\n      }\n    ]\n  }\n  ```\n- **400 Bad Request** (Missing query parameters)\n  ```json\n  {\n    \"error\": \"latitude and longitude are required\"\n  }\n  ```\n- **500 Internal Server Error** (Unexpected error)\n  ```json\n  {\n    \"status\": false,\n    \"error\": \"Sorry, An unexpected error occured\"\n  }"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://schoolapi.kreater.africa",
+			"type": "string"
+		}
+	]
+}
