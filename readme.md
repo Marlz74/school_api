@@ -86,7 +86,7 @@ Use the provided [Postman collection](./School%20API%20Collection.json) to test 
 
 Make sure to set the environment variable `base_url` to your server's base URL (e.g., `http://localhost:3000`).
 
-## 👨‍💻 Author
+## 👨‍💻 Author 
 
 - **Your Name** — [@SD](https://github.com/Marlz74)
 
