@@ -3,7 +3,7 @@ name: Deploy To Server
 on:
   push:
     branches:
-      - master  # or your preferred branch
+      - master  
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16' # or the version your app uses
+        node-version: '18.x' 
 
     - name: Install dependencies
       run: npm install
