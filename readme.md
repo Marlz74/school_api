@@ -1,4 +1,3 @@
-```markdown
 # 📚 School API
 
 A simple RESTful API built with Node.js to manage schools and list them based on geographical proximity using latitude and longitude.
@@ -18,7 +17,8 @@ A simple RESTful API built with Node.js to manage schools and list them based on
 
 ## 📁 Project Structure
 
-```
+```markdown
+
 
 .
 ├── app.js               # Entry point
@@ -34,7 +34,7 @@ A simple RESTful API built with Node.js to manage schools and list them based on
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/school_api.git
+git clone https://github.com/Marlz74/school_api.git
 cd school_api
 ````
 
@@ -56,7 +56,7 @@ npm run dev
 
 ### ➕ Add School
 
-**POST** `/schools/add`
+**POST** `/addSchool`
 
 **Body Parameters (JSON)**:
 
@@ -71,7 +71,7 @@ npm run dev
 
 ### 📍 List Schools by Location
 
-**GET** `/schools/list?latitude=5.6037&longitude=-0.1870`
+**GET** `/listSchools?latitude=5.6037&longitude=-0.1870`
 
 **Query Parameters**:
 
@@ -88,7 +88,7 @@ Make sure to set the environment variable `base_url` to your server's base URL (
 
 ## 👨‍💻 Author
 
-- **Your Name** — [@yourusername](https://github.com/yourusername)
+- **Your Name** — [@SD](https://github.com/Marlz74)
 
 ## 📝 License
 
