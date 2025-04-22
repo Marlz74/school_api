@@ -19,7 +19,14 @@ jobs:
         node-version: '18.x' 
 
     - name: Install dependencies
-      run: npm ci --production  # Use `npm ci` for a more reliable production install
+      run: |
+        if [ -f package-lock.json ]; then
+          echo "Using npm ci for a clean install"
+          npm ci --production  # Use `npm ci` for a more reliable production install
+        else
+          echo "package-lock.json not found. Running npm install to generate it"
+          npm install --production  # Generate package-lock.json first
+        fi
 
     - name: Deploy via SSH
       uses: appleboy/ssh-action@v1.0.0
@@ -31,5 +38,14 @@ jobs:
         script: |
           cd /home/kreaoiyi/schoolapi.kreater.africa
           git pull origin master
-          npm ci --production  # Use `npm ci` here as well
+          
+          # If package-lock.json is missing, run npm install first to generate it
+          if [ -f package-lock.json ]; then
+            echo "Using npm ci for a clean install"
+            npm ci --production  # Use `npm ci` for a more reliable production install
+          else
+            echo "package-lock.json not found. Running npm install to generate it"
+            npm install --production  # Generate package-lock.json first
+          fi
+
           nohup node app.js &   # Run the app in the background using nohup
